@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FORGE — The Public Safety Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0d1b2e;
+  --navy2:#152336;
+  --navy3:#1e3050;
+  --gold:#c9933a;
+  --gold2:#e8b05a;
+  --gold-light:#f5e4c0;
+  --text:#0d1b2e;
+  --text2:#4a5568;
+  --text3:#718096;
+  --border:#e2e8f0;
+  --bg:#f8f7f4;
+  --white:#ffffff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(13,27,46,0.97);backdrop-filter:blur(8px);}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--gold);letter-spacing:2px;}
+.nav-logo span{color:rgba(201,147,58,0.4);font-size:13px;font-family:'DM Sans',sans-serif;font-weight:300;letter-spacing:3px;margin-left:12px;text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:14px;font-weight:400;letter-spacing:0.3px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold2);}
+.nav-cta{background:var(--gold);color:var(--navy);padding:9px 22px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold2);}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,147,58,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,147,58,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-glow{position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(201,147,58,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(201,147,58,0.05) 0%,transparent 70%);pointer-events:none;}
+.hero-content{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:120px 48px 80px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,147,58,0.1);border:1px solid rgba(201,147,58,0.2);border-radius:20px;padding:6px 16px;margin-bottom:32px;}
+.hero-eyebrow span{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(48px,6vw,80px);color:var(--white);line-height:1.1;margin-bottom:24px;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:20px;color:rgba(255,255,255,0.55);font-weight:300;line-height:1.6;max-width:580px;margin-bottom:48px;}
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:var(--navy);padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.2s;display:inline-block;}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);}
+.btn-ghost{color:rgba(255,255,255,0.6);font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:color 0.2s;}
+.btn-ghost:hover{color:var(--white);}
+.btn-ghost svg{width:16px;height:16px;}
+.hero-stats{display:flex;gap:48px;margin-top:72px;padding-top:48px;border-top:1px solid rgba(255,255,255,0.08);}
+.hero-stat-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--gold);line-height:1;}
+.hero-stat-label{font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px;font-weight:300;}
+
+/* PLATFORM SECTION */
+.platform{background:var(--bg);padding:100px 48px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,48px);color:var(--navy);line-height:1.15;margin-bottom:20px;}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-sub{font-size:18px;color:var(--text2);font-weight:300;line-height:1.6;max-width:560px;}
+
+.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:64px;align-items:start;}
+.platform-left{}
+.engine-card{background:var(--navy);border-radius:16px;padding:40px;position:relative;overflow:hidden;}
+.engine-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),transparent);}
+.engine-label{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;}
+.engine-title{font-family:'DM Serif Display',serif;font-size:28px;color:var(--white);margin-bottom:16px;}
+.engine-desc{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:32px;font-weight:300;}
+.engine-features{display:flex;flex-direction:column;gap:12px;}
+.engine-feature{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);}
+.engine-feature::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+.apps-stack{display:flex;flex-direction:column;gap:12px;}
+.app-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 24px;display:flex;align-items:center;gap:16px;transition:all 0.2s;cursor:default;}
+.app-card:hover{border-color:var(--gold);transform:translateX(4px);}
+.app-card.live{border-left:3px solid var(--gold);}
+.app-card.soon{opacity:0.6;}
+.app-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.app-icon.gold{background:var(--gold-light);}
+.app-icon.gray{background:#f0f0f0;}
+.app-name{font-weight:600;font-size:15px;color:var(--navy);}
+.app-desc{font-size:13px;color:var(--text3);margin-top:2px;}
+.app-badge{margin-left:auto;font-size:11px;font-weight:600;padding:3px 10px;border-radius:12px;white-space:nowrap;}
+.app-badge.live{background:rgba(201,147,58,0.1);color:var(--gold);}
+.app-badge.soon{background:#f0f0f0;color:#999;}
+
+/* HOW IT WORKS */
+.how{padding:100px 48px;background:var(--white);}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;background:var(--border);border-radius:16px;overflow:hidden;}
+.how-step{background:var(--white);padding:40px 32px;}
+.how-num{font-family:'DM Serif Display',serif;font-size:48px;color:var(--gold-light);line-height:1;margin-bottom:16px;}
+.how-title{font-size:17px;font-weight:600;color:var(--navy);margin-bottom:10px;}
+.how-desc{font-size:14px;color:var(--text2);line-height:1.7;font-weight:300;}
+
+/* SAFETYSTREAM FEATURE */
+.ss-section{background:var(--navy);padding:100px 48px;position:relative;overflow:hidden;}
+.ss-section::before{content:'SafetyStream';position:absolute;right:-20px;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'DM Serif Display',serif;font-size:120px;color:rgba(201,147,58,0.04);pointer-events:none;white-space:nowrap;}
+.ss-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.ss-label{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.ss-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,3.5vw,44px);color:var(--white);line-height:1.15;margin-bottom:20px;}
+.ss-title em{font-style:italic;color:var(--gold);}
+.ss-desc{font-size:16px;color:rgba(255,255,255,0.5);line-height:1.7;font-weight:300;margin-bottom:40px;}
+.ss-features{display:flex;flex-direction:column;gap:20px;}
+.ss-feature{display:flex;gap:16px;}
+.ss-feature-icon{width:36px;height:36px;border-radius:8px;background:rgba(201,147,58,0.1);border:1px solid rgba(201,147,58,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ss-feature-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;}
+.ss-feature-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;font-weight:300;}
+.ss-screen{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px;overflow:hidden;}
+.ss-screen-bar{display:flex;gap:6px;margin-bottom:16px;}
+.ss-screen-dot{width:10px;height:10px;border-radius:50%;}
+.ss-screen-content{background:rgba(255,255,255,0.03);border-radius:8px;padding:20px;}
+.ss-metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+.ss-metric{background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;text-align:center;}
+.ss-metric-val{font-family:'DM Serif Display',serif;font-size:24px;color:var(--gold);}
+.ss-metric-lbl{font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px;}
+.ss-officer-list{display:flex;flex-direction:column;gap:8px;}
+.ss-officer{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.03);border-radius:6px;padding:8px 12px;}
+.ss-officer-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+.ss-officer-name{font-size:12px;color:rgba(255,255,255,0.6);flex:1;}
+.ss-officer-bar{height:4px;width:60%;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;}
+.ss-officer-fill{height:100%;border-radius:2px;background:var(--gold);}
+.ss-officer-pct{font-size:11px;color:rgba(255,255,255,0.3);}
+
+/* CTA */
+.cta-section{padding:100px 48px;background:var(--bg);text-align:center;}
+.cta-box{max-width:640px;margin:0 auto;}
+.cta-title{font-family:'DM Serif Display',serif;font-size:clamp(32px,4vw,52px);color:var(--navy);line-height:1.15;margin-bottom:20px;}
+.cta-title em{font-style:italic;color:var(--gold);}
+.cta-sub{font-size:18px;color:var(--text2);font-weight:300;line-height:1.6;margin-bottom:40px;}
+.cta-form{display:flex;gap:12px;max-width:440px;margin:0 auto;}
+.cta-form input{flex:1;padding:14px 18px;border:1px solid var(--border);border-radius:8px;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;}
+.cta-form input:focus{border-color:var(--gold);}
+.cta-note{font-size:13px;color:var(--text3);margin-top:16px;}
+
+/* FOOTER */
+footer{background:var(--navy);padding:48px;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--gold);letter-spacing:2px;}
+.footer-copy{font-size:13px;color:rgba(255,255,255,0.3);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:rgba(255,255,255,0.6);}
+
+@media(max-width:768px){
+  nav{padding:0 24px;}
+  .hero-content,.platform,.how,.ss-section,.cta-section{padding-left:24px;padding-right:24px;}
+  .platform-grid,.ss-grid,.how-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:32px;flex-wrap:wrap;}
+  footer{flex-direction:column;gap:24px;text-align:center;}
+  .cta-form{flex-direction:column;}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{animation:fadeUp 0.6s ease both;}
+.hero h1{animation:fadeUp 0.6s 0.1s ease both;}
+.hero-sub{animation:fadeUp 0.6s 0.2s ease both;}
+.hero-actions{animation:fadeUp 0.6s 0.3s ease both;}
+.hero-stats{animation:fadeUp 0.6s 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">FORGE<span>Platform</span></div>
+  <div class="nav-links">
+    <a href="#platform">Platform</a>
+    <a href="#safetystream">SafetyStream</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Request a demo</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-dot"></div>
+      <span>Built for public safety</span>
+    </div>
+    <h1>One engine.<br/><em>Every app</em> your<br/>agency needs.</h1>
+    <p class="hero-sub">FORGE is the platform that powers modern law enforcement operations — from training compliance to scheduling, wellness, and beyond. One officer record. Every app connected.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a demo</a>
+      <a href="#platform" class="btn-ghost">See the platform
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3l5 5-5 5M3 8h10"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">26</div>
+        <div class="hero-stat-label">Database tables powering<br/>every officer record</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">1</div>
+        <div class="hero-stat-label">Officer record shared<br/>across all apps</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">∞</div>
+        <div class="hero-stat-label">Apps that can run<br/>on the engine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="platform" id="platform">
+  <div class="section-inner">
+    <div class="section-label">The platform</div>
+    <div class="platform-grid">
+      <div class="platform-left">
+        <div class="section-title">One engine.<br/><em>Built to scale.</em></div>
+        <p class="section-sub" style="margin-bottom:32px;">FORGE transforms law enforcement operations with a central officer record that every app shares — so data flows freely, nothing gets duplicated, and your agency runs as one connected system.</p>
+        <div class="engine-card">
+          <div class="engine-label">Core engine</div>
+          <div class="engine-title">FORGE</div>
+          <div class="engine-desc">The platform backbone. Every app built on FORGE shares one officer record, one authentication system, one data layer.</div>
+          <div class="engine-features">
+            <div class="engine-feature">Central officer record</div>
+            <div class="engine-feature">Agency & issuing authority management</div>
+            <div class="engine-feature">Role-based access control</div>
+            <div class="engine-feature">In-platform messaging</div>
+            <div class="engine-feature">State transmission & reporting</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:13px;font-weight:600;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;">Apps on FORGE</p>
+        <div class="apps-stack">
+          <div class="app-card live">
+            <div class="app-icon gold">🎓</div>
+            <div>
+              <div class="app-name">SafetyStream™</div>
+              <div class="app-desc">MCOLES compliance training & accreditation</div>
+            </div>
+            <div class="app-badge live">Live</div>
+          </div>
+          <div class="app-card soon">
+            <div class="app-icon gray">📅</div>
+            <div>
+              <div class="app-name">FORGE Schedule</div>
+              <div class="app-desc">Shift management & deployment planning</div>
+            </div>
+            <div class="app-badge soon">Coming soon</div>
+          </div>
+          <div class="app-card soon">
+            <div class="app-icon gray">❤️</div>
+            <div>
+              <div class="app-name">FORGE Wellness</div>
+              <div class="app-desc">Officer wellness tracking & support</div>
+            </div>
+            <div class="app-badge soon">Coming soon</div>
+          </div>
+          <div class="app-card soon">
+            <div class="app-icon gray">🛡️</div>
+            <div>
+              <div class="app-name">FORGE Equipment</div>
+              <div class="app-desc">Asset tracking & certification management</div>
+            </div>
+            <div class="app-badge soon">Coming soon</div>
+          </div>
+          <div class="app-card soon">
+            <div class="app-icon gray">👥</div>
+            <div>
+              <div class="app-name">FORGE HR</div>
+              <div class="app-desc">Personnel management & records</div>
+            </div>
+            <div class="app-badge soon">Coming soon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="section-inner">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Designed around<br/><em>the officer.</em></div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-title">One officer record</div>
+        <div class="how-desc">Every officer exists once in FORGE. Their training history, certifications, assignments, and wellness data all connect to a single source of truth.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-title">Apps plug in</div>
+        <div class="how-desc">Each FORGE app connects to the central record. No duplicate data entry. No siloed systems. An officer completes training — every app knows instantly.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-title">Agencies stay in control</div>
+        <div class="how-desc">Admins configure which apps are active, which features are enabled, and which issuing authorities govern compliance — all from one portal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETYSTREAM -->
+<section class="ss-section" id="safetystream">
+  <div class="section-inner">
+    <div class="ss-grid">
+      <div>
+        <div class="ss-label">First app on FORGE</div>
+        <div class="ss-title">SafetyStream™<br/><em>Training, simplified.</em></div>
+        <div class="ss-desc">MCOLES compliance tracking, automated enrollment, and accreditation management — built for Michigan law enforcement and ready to scale nationwide.</div>
+        <div class="ss-features">
+          <div class="ss-feature">
+            <div class="ss-feature-icon">📋</div>
+            <div>
+              <div class="ss-feature-title">Auto-enrollment</div>
+              <div class="ss-feature-desc">Officers are automatically enrolled in required courses the moment they're assigned to an agency.</div>
+            </div>
+          </div>
+          <div class="ss-feature">
+            <div class="ss-feature-icon">📊</div>
+            <div>
+              <div class="ss-feature-title">Supervisor dashboard</div>
+              <div class="ss-feature-desc">Real-time compliance status for every officer in your department, with year-over-year plan comparison.</div>
+            </div>
+          </div>
+          <div class="ss-feature">
+            <div class="ss-feature-icon">🏆</div>
+            <div>
+              <div class="ss-feature-title">Multi-IA support</div>
+              <div class="ss-feature-desc">MCOLES and MLEAC accreditation tracked simultaneously. Shared lessons count toward both automatically.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ss-screen">
+        <div class="ss-screen-bar">
+          <div class="ss-screen-dot" style="background:#ff5f57;"></div>
+          <div class="ss-screen-dot" style="background:#ffbd2e;"></div>
+          <div class="ss-screen-dot" style="background:#28ca41;"></div>
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.2);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase;">Supervisor Dashboard — 2026</div>
+        <div class="ss-screen-content">
+          <div class="ss-metric-row">
+            <div class="ss-metric">
+              <div class="ss-metric-val">12</div>
+              <div class="ss-metric-lbl">Officers</div>
+            </div>
+            <div class="ss-metric">
+              <div class="ss-metric-val">9</div>
+              <div class="ss-metric-lbl">Compliant</div>
+            </div>
+            <div class="ss-metric">
+              <div class="ss-metric-val">8h</div>
+              <div class="ss-metric-lbl">Required</div>
+            </div>
+          </div>
+          <div class="ss-officer-list">
+            <div class="ss-officer">
+              <div class="ss-officer-avatar" style="background:rgba(201,147,58,0.15);color:var(--gold);">RJ</div>
+              <div class="ss-officer-name">Robert Johnson</div>
+              <div class="ss-officer-bar"><div class="ss-officer-fill" style="width:100%;"></div></div>
+              <div class="ss-officer-pct">100%</div>
+            </div>
+            <div class="ss-officer">
+              <div class="ss-officer-avatar" style="background:rgba(201,147,58,0.15);color:var(--gold);">DW</div>
+              <div class="ss-officer-name">Darnell Webb</div>
+              <div class="ss-officer-bar"><div class="ss-officer-fill" style="width:75%;"></div></div>
+              <div class="ss-officer-pct">75%</div>
+            </div>
+            <div class="ss-officer">
+              <div class="ss-officer-avatar" style="background:rgba(201,147,58,0.15);color:var(--gold);">MA</div>
+              <div class="ss-officer-name">Maria Alvarez</div>
+              <div class="ss-officer-bar"><div class="ss-officer-fill" style="width:100%;"></div></div>
+              <div class="ss-officer-pct">100%</div>
+            </div>
+            <div class="ss-officer">
+              <div class="ss-officer-avatar" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.3);">PN</div>
+              <div class="ss-officer-name">Priya Nair</div>
+              <div class="ss-officer-bar"><div class="ss-officer-fill" style="width:40%;background:rgba(255,255,255,0.2);"></div></div>
+              <div class="ss-officer-pct">40%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-box">
+    <div class="section-label" style="text-align:center;">Get started</div>
+    <div class="cta-title">Ready to see<br/><em>FORGE in action?</em></div>
+    <p class="cta-sub">We'll walk you through SafetyStream and show you the full platform roadmap. No obligation, no pressure.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="your@agency.gov"/>
+      <a href="mailto:demo@forge-us.com" class="btn-primary">Request demo</a>
+    </div>
+    <p class="cta-note">Rockford, Michigan</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">FORGE</div>
+  <div class="footer-copy">© 2026 shoëfware, Inc. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="mailto:demo@forge-us.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
